@@ -19,7 +19,8 @@ class ConversationViewModel(application: Application, val number: String) : Andr
     private val compositeDisposable = CompositeDisposable()
 
     fun loadMessages() {
-        compositeDisposable += conversationRepository.getConversationData(number)
+        conversationRepository.number = number
+        compositeDisposable += conversationRepository.getConversationData()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.newThread())
                 .subscribeWith(object: DisposableObserver<ArrayList<Message>>() {

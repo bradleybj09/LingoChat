@@ -7,7 +7,6 @@ import android.content.Context
 import android.content.Intent
 import com.iambenbradley.lingochat.conversation.ConversationActivity
 import com.iambenbradley.lingochat.dagger.LingoChatApplication
-import com.iambenbradley.lingochat.model.ConversationRepository
 import com.iambenbradley.lingochat.utils.Conversation
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableObserver
