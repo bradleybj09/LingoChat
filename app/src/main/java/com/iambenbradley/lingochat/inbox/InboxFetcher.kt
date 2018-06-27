@@ -24,7 +24,7 @@ class InboxFetcher() {
     var conversations = ArrayList<Conversation>()
 
     fun refreshInbox() : Observable<ArrayList<Conversation>> {
-
+        conversations.clear()
         val cursor = contentResolver.query(uri,projection,null,null,"date DESC")
         val addressColumn = cursor.getColumnIndex("address")
         val bodyColumn = cursor.getColumnIndex("body")

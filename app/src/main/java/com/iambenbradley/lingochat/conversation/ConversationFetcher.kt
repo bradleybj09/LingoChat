@@ -1,6 +1,5 @@
 package com.iambenbradley.lingochat.conversation
 
-import android.content.Context
 import android.provider.Telephony
 import android.util.Log
 import com.iambenbradley.lingochat.dagger.LingoChatApplication
@@ -9,7 +8,7 @@ import com.iambenbradley.lingochat.utils.Message
 import io.reactivex.Observable
 import kotlin.collections.ArrayList
 
-class ConversationFetcher() {
+class ConversationFetcher {
 
     val context = LingoChatApplication.component.getContext()
 
@@ -25,9 +24,6 @@ class ConversationFetcher() {
         messages.addAll(getReceivedSms())
         messages.addAll(getSentSms())
         messages.sort()
-        for (message in messages) {
-            Log.e("apptag",message.content)
-        }
         return Observable.just(messages)
     }
 
@@ -63,6 +59,7 @@ class ConversationFetcher() {
                 cursor.moveToNext()
             }
         }
+
         cursor.close()
         return returnMessages
     }

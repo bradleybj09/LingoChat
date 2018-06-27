@@ -5,7 +5,6 @@ import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.MutableLiveData
 import com.iambenbradley.lingochat.dagger.LingoChatApplication
 import com.iambenbradley.lingochat.extensions.plusAssign
-import com.iambenbradley.lingochat.model.ConversationRepository
 import com.iambenbradley.lingochat.utils.Message
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
