@@ -3,17 +3,24 @@ package com.iambenbradley.lingochat.conversation
 import android.content.Context
 import android.provider.Telephony
 import android.util.Log
+import com.iambenbradley.lingochat.dagger.LingoChatApplication
 import com.iambenbradley.lingochat.utils.Contact
 import com.iambenbradley.lingochat.utils.Message
 import io.reactivex.Observable
 import kotlin.collections.ArrayList
 
-class ConversationFetcher(context: Context, number: String) {
+class ConversationFetcher() {
+
+    val context = LingoChatApplication.component.getContext()
+
+    lateinit var number: String
+    lateinit var args: Array<String>
 
     val contentResolver = context.contentResolver
 
-    fun getConversation() : Observable<ArrayList<Message>> {
-
+    fun getConversation(number: String) : Observable<ArrayList<Message>> {
+        this.number = number
+        args = arrayOf(number)
         val messages = ArrayList<Message>()
         messages.addAll(getReceivedSms())
         messages.addAll(getSentSms())
@@ -38,8 +45,6 @@ class ConversationFetcher(context: Context, number: String) {
     val smsSentSelection = Telephony.Sms.ADDRESS + " = ?"
     val mmsReceivedSelection = Telephony.Mms.CREATOR + " = ?"
     val mmsSentSelection = Telephony.Mms.CREATOR + " = ?"
-
-    val args = arrayOf(number)
 
     val smsReceivedSortOrder = Telephony.Sms.Inbox.DEFAULT_SORT_ORDER
     val smsSentSortOrder = Telephony.Sms.Sent.DEFAULT_SORT_ORDER

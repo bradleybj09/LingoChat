@@ -3,6 +3,7 @@ package com.iambenbradley.lingochat.conversation
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.MutableLiveData
+import com.iambenbradley.lingochat.dagger.LingoChatApplication
 import com.iambenbradley.lingochat.extensions.plusAssign
 import com.iambenbradley.lingochat.model.ConversationRepository
 import com.iambenbradley.lingochat.utils.Message
@@ -12,7 +13,8 @@ import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
 
 class ConversationViewModel(application: Application, val number: String) : AndroidViewModel(application) {
-    val conversationRepository = ConversationRepository(application)
+
+    val conversationRepository = LingoChatApplication.component.getConversationRepository()
     var messageList = MutableLiveData<ArrayList<Message>>()
 
     private val compositeDisposable = CompositeDisposable()

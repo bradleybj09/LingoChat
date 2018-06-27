@@ -6,6 +6,7 @@ import android.arch.lifecycle.MutableLiveData
 import android.content.Context
 import android.content.Intent
 import com.iambenbradley.lingochat.conversation.ConversationActivity
+import com.iambenbradley.lingochat.dagger.LingoChatApplication
 import com.iambenbradley.lingochat.model.ConversationRepository
 import com.iambenbradley.lingochat.utils.Conversation
 import io.reactivex.disposables.CompositeDisposable
@@ -19,7 +20,7 @@ import io.reactivex.schedulers.Schedulers
  */
 class ListViewViewModel(application: Application) : AndroidViewModel(application) {
 
-    var conversationRepository = ConversationRepository(application)
+    var conversationRepository = LingoChatApplication.component.getConversationRepository()
     var conversations = MutableLiveData<ArrayList<Conversation>>()
     private val compositeDisposable = CompositeDisposable()
 

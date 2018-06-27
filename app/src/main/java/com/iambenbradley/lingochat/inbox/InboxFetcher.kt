@@ -2,16 +2,21 @@ package com.iambenbradley.lingochat.inbox
 
 import android.content.Context
 import android.net.Uri
+import com.iambenbradley.lingochat.dagger.ApplicationComponent
+import com.iambenbradley.lingochat.dagger.LingoChatApplication
 import com.iambenbradley.lingochat.utils.Contact
 import com.iambenbradley.lingochat.utils.Conversation
 import io.reactivex.Observable
 import java.text.SimpleDateFormat
 import java.util.*
+import javax.inject.Inject
 
 /**
  * Created by Ben on 10/8/2017.
  */
-class InboxFetcher(context: Context) {
+class InboxFetcher() {
+
+    val context = LingoChatApplication.component.getContext()
 
     val contentResolver = context.contentResolver
     val projection: Array<String> = arrayOf("*")
